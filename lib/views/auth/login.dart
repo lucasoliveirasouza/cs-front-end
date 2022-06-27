@@ -1,6 +1,9 @@
 import 'package:csbiblio/componentes/form_field_padrao.dart';
+import 'package:csbiblio/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart';
+
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -53,13 +56,13 @@ class _LoginViewState extends State<LoginView> {
               height: 55,
               child: ElevatedButton(
                 onPressed: (){
-                  /*Provider.of<AuthService>(context, listen: false)
+                  Provider.of<AuthService>(context, listen: false)
                       .logar(usuario.text, senha.text)
                       .then((value) => {
                     Get.snackbar(
                         "Login de usuário", value.toString(),
                         backgroundColor: Colors.green.shade50)
-                  });*/
+                  });
 
                 },
                 child: Text("Entrar"),

@@ -1,9 +1,15 @@
 import 'dart:convert';
 
+import 'package:csbiblio/views/menu/menu.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+
 import 'package:http/http.dart' as http;
 
-class AuthService{
+
+
+class AuthService extends ChangeNotifier{
   String _token = "";
   bool isLoading = true;
 
@@ -11,9 +17,8 @@ class AuthService{
 
   Future<String> logar(String usuario, String senha) async {
     final storage = new FlutterSecureStorage();
-    String? value = await storage.read(key: "token");
     final http.Response response = await http.post(
-      Uri.parse("https://biblioteca-luc.herokuapp.com/api/auth/signin"),
+      Uri.parse("https://biblioteca-cs2022.herokuapp.com/api/auth/signin"),
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
@@ -22,8 +27,9 @@ class AuthService{
     );
     if (response.statusCode == 200) {
       _token = jsonDecode(response.body)["accessToken"];
-      await storage.write(key: "token", value: _token);
-      //Get.to(() => MenuView());
+      await storage.write(key: "tokenKey", value: _token);
+      print(_token);
+      Get.to(() => MenuView());
       return "Seja bem-vindo";
     } else {
       return "Existe algum erro com suas credenciais";
@@ -32,7 +38,7 @@ class AuthService{
 
   Future<String> registrar(String usuario, String email, String senha) async {
     final http.Response response = await http.post(
-      Uri.parse("https://biblioteca-luc.herokuapp.com/api/auth/signup"),
+      Uri.parse("https://biblioteca-cs2022.herokuapp.com/api/auth/signup"),
       headers: <String, String>{
         'Content-Type': 'application/json',
       },
@@ -49,6 +55,6 @@ class AuthService{
 
   logout() async {
     final storage = new FlutterSecureStorage();
-    await storage.delete(key: "token");
+    await storage.delete(key: "tokenKey");
   }
 }
