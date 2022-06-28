@@ -1,6 +1,10 @@
+import 'package:csbiblio/models/usuario.dart';
+import 'package:csbiblio/services/auth_service.dart';
+import 'package:csbiblio/services/usuario_service.dart';
 import 'package:csbiblio/views/auth/cadastrar_usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class ListaUsuariosView extends StatefulWidget {
   const ListaUsuariosView({Key? key}) : super(key: key);
@@ -16,6 +20,23 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
 
       appBar: AppBar(
         title: Text("Usuários"),
+      ),
+      body: Consumer<UsuarioService>(
+        builder: (context, repositorio, child) {
+          return ListView.separated(
+            itemCount: repositorio.usuarios.length,
+            itemBuilder: (BuildContext contexto, int usuario) {
+              final List<Usuario> lista = repositorio.usuarios;
+              return Card(
+                child: ListTile(
+                  title: Center(child: Text(lista[usuario].nome)),
+                ),
+              );
+            },
+            separatorBuilder: (_, __) => Container(),
+            padding: EdgeInsets.all(16),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
