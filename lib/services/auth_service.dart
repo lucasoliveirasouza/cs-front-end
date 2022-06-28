@@ -28,7 +28,6 @@ class AuthService extends ChangeNotifier{
     if (response.statusCode == 200) {
       _token = jsonDecode(response.body)["accessToken"];
       await storage.write(key: "tokenKey", value: _token);
-      print(_token);
       Get.to(() => MenuView());
       return "Seja bem-vindo";
     } else {
