@@ -21,25 +21,16 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Cadastrar usuário"),
+      ),
       body: Form(
         key: formKey,
         child: Container(
-          padding: EdgeInsets.only(right: 20, left: 20, top: 150),
+          padding: EdgeInsets.only(right: 20, left: 20, top: 20),
           child: ListView(
             children: [
-              Center(
-                child: Text(
-                  "Registre-se",
-                  style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
+
               FormFieldPadrao(
                 controle: usuario,
                 title: "Usuário",
@@ -100,22 +91,6 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
                   child: Text("Cadastrar"),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text(
-                  "Realizar login.",
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                  ),
-                ),
-              )
             ],
           ),
         ),
