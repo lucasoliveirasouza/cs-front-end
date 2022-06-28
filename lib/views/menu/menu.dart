@@ -102,8 +102,8 @@ class _MenuViewState extends State<MenuView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Sair"),
-          content: const Text("Deseja realmente sair do aplicativo?"),
+          title: Text("Sair"),
+          content: Text("Deseja realmente sair do aplicativo?"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
