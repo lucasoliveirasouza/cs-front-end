@@ -17,7 +17,7 @@ class _MenuViewState extends State<MenuView> {
     return Scaffold(
       appBar: AppBar(title: Text("Livros")),
       body: Center(
-        child: Text('Lista de Livros'),
+        child: Text('Livros disponíveis'),
       ),
       drawer: Drawer(
         child: ListView(
