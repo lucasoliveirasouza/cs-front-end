@@ -29,7 +29,9 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
               final List<Usuario> lista = repositorio.usuarios;
               return Card(
                 child: ListTile(
-                  title: Center(child: Text(lista[usuario].nome)),
+                  title: Text(lista[usuario].nome),
+                  subtitle: Text(lista[usuario].email),
+                  trailing: Text(lista[usuario].id),
                 ),
               );
             },
