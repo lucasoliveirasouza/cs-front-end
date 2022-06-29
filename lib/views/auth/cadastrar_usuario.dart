@@ -66,11 +66,6 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
                 value: dropdownValue,
                 icon: Icon(null),
                 elevation: 16,
-                style: const TextStyle(color: Colors.deepPurple),
-                underline: Container(
-                  height: 2,
-                  color: Colors.deepPurpleAccent,
-                ),
                 onChanged: (String? newValue) {
                   setState(() {
                     dropdownValue = newValue!;
