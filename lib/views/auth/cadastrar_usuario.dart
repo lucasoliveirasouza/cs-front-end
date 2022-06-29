@@ -17,6 +17,8 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
   final senha = TextEditingController();
   final confirmarSenha = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  String dropdownValue = 'user';
+  List<String> funcoes = ["user", "mod", "admin"];
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,6 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
           padding: EdgeInsets.only(right: 20, left: 20, top: 20),
           child: ListView(
             children: [
-
               FormFieldPadrao(
                 controle: usuario,
                 title: "Usuário",
@@ -61,29 +62,53 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
               SizedBox(
                 height: 20,
               ),
+              DropdownButton<String>(
+                value: dropdownValue,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownValue = newValue!;
+                  });
+                },
+                items: funcoes.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 55,
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      if(senha.text == confirmarSenha.text){
+                      if (senha.text == confirmarSenha.text) {
                         Provider.of<AuthService>(context, listen: false)
                             .registrar(usuario.text, email.text, senha.text)
-                            .then((value){
-                          if(value == "Usuario registrado com sucesso!"){
+                            .then((value) {
+                          if (value == "Usuario registrado com sucesso!") {
                             Get.snackbar(
                                 "Cadastro de usuário", value.toString(),
                                 backgroundColor: Colors.green.shade100);
                             Navigator.of(context).pop();
-                          }else{
+                          } else {
                             Get.snackbar(
                                 "Erro ao cadastrar usuário", value.toString(),
                                 backgroundColor: Colors.red.shade100);
                           }
                         });
-                      }else{
-                        Get.snackbar(
-                            "Erro ao cadastrar usuário", "As senhas são diferentes",
+                      } else {
+                        Get.snackbar("Erro ao cadastrar usuário",
+                            "As senhas são diferentes",
                             backgroundColor: Colors.red.shade100);
                       }
                     }
@@ -91,6 +116,7 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
                   child: Text("Cadastrar"),
                 ),
               ),
+
             ],
           ),
         ),
