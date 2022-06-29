@@ -17,8 +17,8 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
   final senha = TextEditingController();
   final confirmarSenha = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  String dropdownValue = 'user';
-  List<String> funcoes = ["user", "mod", "admin"];
+  String dropdownValue = 'Usuário';
+  List<String> funcoes = ["Usuário", "Moderador", "Administrador"];
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
               ),
               DropdownButton<String>(
                 value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
+                icon: Icon(null),
                 elevation: 16,
                 style: const TextStyle(color: Colors.deepPurple),
                 underline: Container(
