@@ -17,8 +17,8 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
   final senha = TextEditingController();
   final confirmarSenha = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  String dropdownValue = 'Usuário';
-  List<String> funcoes = ["Usuário", "Moderador", "Administrador"];
+  String dropdownValue = 'Selecione...';
+  List<String> funcoes = ["Selecione...","Usuário", "Moderador", "Administrador"];
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +60,16 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
                 obscure: true,
               ),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
-              DropdownButton<String>(
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  label: Text("Função"),
+                  border: OutlineInputBorder(
+
+                    borderRadius: BorderRadius.all(new Radius.circular(10)),
+                  )
+                ),
                 value: dropdownValue,
                 icon: Icon(null),
                 elevation: 16,
