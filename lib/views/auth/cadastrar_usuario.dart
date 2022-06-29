@@ -79,7 +79,7 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
                 }).toList(),
               ),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
               Container(
                 height: 55,
