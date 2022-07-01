@@ -1,11 +1,5 @@
 import 'package:csbiblio/models/Role.dart';
 
-/// id : 1
-/// username : "admin"
-/// email : "admin@email.com"
-/// password : "$2a$10$kqjrSqjDd8MQXIVzlxu/NeJU5N6GKDJ4v3ZFesBKj54N4o7gnPWEm"
-/// role : {"id":1,"name":"ROLE_ADMIN"}
-
 class Usuario {
   Usuario({
     int? id,
