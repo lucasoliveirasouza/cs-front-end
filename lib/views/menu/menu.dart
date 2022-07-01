@@ -22,7 +22,6 @@ class _MenuViewState extends State<MenuView> {
       drawer: Drawer(
         child: ListView(
           children: [
-
             Container(
               height: 65,
               child: ListTile(
@@ -31,16 +30,20 @@ class _MenuViewState extends State<MenuView> {
                   style: TextStyle(fontSize: 20),
                 ),
                 leading: CircleAvatar(
-                    radius: 23,
+                  radius: 23,
                   backgroundColor: Colors.white,
-                  child: Icon(Icons.account_circle,size: 50,),
+                  child: Icon(
+                    Icons.account_circle,
+                    size: 50,
+                  ),
                 ),
               ),
             ),
             Container(
-              child: Divider(color: Colors.grey,),
+              child: Divider(
+                color: Colors.grey,
+              ),
             ),
-
             ListTile(
               leading: Icon(Icons.person_add),
               title: Text('Cadastro de Usuários'),
@@ -86,10 +89,13 @@ class _MenuViewState extends State<MenuView> {
             ),
             Center(
               child: IconButton(
-                onPressed: (){
+                onPressed: () {
                   logout();
                 },
-                icon: Icon(Icons.exit_to_app,size: 40,),
+                icon: Icon(
+                  Icons.exit_to_app,
+                  size: 40,
+                ),
               ),
             )
           ],
@@ -97,6 +103,7 @@ class _MenuViewState extends State<MenuView> {
       ),
     );
   }
+
   logout() {
     showDialog(
       context: context,
@@ -107,24 +114,25 @@ class _MenuViewState extends State<MenuView> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                AuthService().logout();
-                Get.to(() => LoginView());
+                Navigator.of(context).pop(false);
               },
               child: Text(
-                "Sair",
+                "Cancelar",
                 style: TextStyle(color: Colors.red),
               ),
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(false);
+                AuthService().logout();
+                Get.to(() => LoginView());
               },
-              child: Text("Cancelar"),
+              child: Text(
+                "Sair",
+              ),
             ),
           ],
         );
       },
     );
   }
-
 }
