@@ -38,23 +38,6 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  Future<String> registrar(String usuario, String email, String senha) async {
-    final http.Response response = await http.post(
-      Uri.parse("${servidor}api/auth/signup"),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(<String, String>{
-        "email": email,
-        "password": senha,
-        "username": usuario
-      }),
-    );
-    print(jsonDecode(response.body)["message"]);
-    return jsonDecode(response.body)["message"] ??
-        "Não foi possível realizar o cadastro";
-  }
-
   logout() async {
     final storage = new FlutterSecureStorage();
     await storage.delete(key: "tokenKey");

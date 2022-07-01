@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:convert';
-import 'package:csbiblio/models/usuario.dart';
+import 'package:csbiblio/models/Usuario.dart';
+
 import 'package:csbiblio/util/contantes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -29,12 +30,40 @@ class UsuarioService extends ChangeNotifier {
       List<dynamic> listaUsuarios = json;
 
       listaUsuarios.forEach((usuario) {
-        print(usuario["id"]);
-        Usuario user = Usuario(
-            usuario["id"].toString(), usuario["username"], usuario["email"]);
+        Usuario user = Usuario.fromJson(usuario);
         _usuarios.add(user);
       });
       notifyListeners();
     }
+  }
+
+  Future<String> registrarUsuario(
+      String usuario, String email, String senha, String role) async {
+    String funcao;
+
+    if (role == "Usuário") {
+      funcao = "user";
+    } else if (role == "Moderador") {
+      funcao = "mod";
+    } else {
+      funcao = "admin";
+    }
+    String? value = await storage.read(key: "tokenKey");
+    final http.Response response = await http.post(
+      Uri.parse("${servidor}api/auth/signup"),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer ${value}"
+      },
+      body: jsonEncode(<String, String>{
+        "email": email,
+        "password": senha,
+        "username": usuario,
+        "role": funcao
+      }),
+    );
+
+    return jsonDecode(response.body)["message"] ??
+        "Não foi possível realizar o cadastro";
   }
 }

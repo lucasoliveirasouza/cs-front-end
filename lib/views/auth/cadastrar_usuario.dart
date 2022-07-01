@@ -1,5 +1,5 @@
 import 'package:csbiblio/componentes/form_field_padrao.dart';
-import 'package:csbiblio/services/auth_service.dart';
+import 'package:csbiblio/services/usuario_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +17,8 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
   final senha = TextEditingController();
   final confirmarSenha = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  String dropdownValue = 'Selecione...';
-  List<String> funcoes = ["Selecione...","Usuário", "Moderador", "Administrador"];
+  String funcao = 'Usuário';
+  List<String> funcoes = ["Usuário", "Moderador", "Administrador"];
 
   @override
   Widget build(BuildContext context) {
@@ -64,18 +64,16 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
               ),
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  label: Text("Função"),
-                  border: OutlineInputBorder(
-
-                    borderRadius: BorderRadius.all(new Radius.circular(10)),
-                  )
-                ),
-                value: dropdownValue,
+                    label: Text("Função"),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(new Radius.circular(10)),
+                    )),
+                value: funcao,
                 icon: Icon(null),
                 elevation: 16,
                 onChanged: (String? newValue) {
                   setState(() {
-                    dropdownValue = newValue!;
+                    funcao = newValue!;
                   });
                 },
                 items: funcoes.map<DropdownMenuItem<String>>((String value) {
@@ -94,10 +92,11 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       if (senha.text == confirmarSenha.text) {
-                        Provider.of<AuthService>(context, listen: false)
-                            .registrar(usuario.text, email.text, senha.text)
+                        Provider.of<UsuarioService>(context, listen: false)
+                            .registrarUsuario(
+                                usuario.text, email.text, senha.text, funcao)
                             .then((value) {
-                          if (value == "Usuario registrado com sucesso!") {
+                          if (value == "User registered successfully!") {
                             Get.snackbar(
                                 "Cadastro de usuário", value.toString(),
                                 backgroundColor: Colors.green.shade100);
@@ -118,7 +117,6 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
                   child: Text("Cadastrar"),
                 ),
               ),
-
             ],
           ),
         ),

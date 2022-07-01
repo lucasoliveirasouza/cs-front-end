@@ -1,5 +1,4 @@
-import 'package:csbiblio/models/usuario.dart';
-import 'package:csbiblio/services/auth_service.dart';
+import 'package:csbiblio/models/Usuario.dart';
 import 'package:csbiblio/services/usuario_service.dart';
 import 'package:csbiblio/views/auth/cadastrar_usuario.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,6 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         title: Text("Usuários"),
       ),
@@ -29,9 +27,9 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
               final List<Usuario> lista = repositorio.usuarios;
               return Card(
                 child: ListTile(
-                  title: Text(lista[usuario].nome),
-                  subtitle: Text(lista[usuario].email),
-                  trailing: Text(lista[usuario].id),
+                  title: Text(lista[usuario].username!),
+                  subtitle: Text(lista[usuario].email!),
+                  trailing: Text(lista[usuario].id!.toString()),
                 ),
               );
             },
@@ -41,7 +39,7 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
+        onPressed: () {
           Get.to(() => CadastrarUsuarioView());
         },
         child: Icon(Icons.add),
