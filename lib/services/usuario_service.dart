@@ -49,7 +49,7 @@ class UsuarioService extends ChangeNotifier {
       funcao = "admin";
     }
     String? value = await storage.read(key: "tokenKey");
-    final http.Response response = await http.post(
+    final http.Response response = await http.put(
       Uri.parse("${servidor}api/auth/signup"),
       headers: <String, String>{
         'Content-Type': 'application/json',
