@@ -1,6 +1,7 @@
 import 'package:csbiblio/models/Usuario.dart';
 import 'package:csbiblio/services/usuario_service.dart';
 import 'package:csbiblio/views/auth/cadastrar_usuario.dart';
+import 'package:csbiblio/views/auth/editar_usuario.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,9 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
                   title: Text(lista[usuario].username!),
                   subtitle: Text(lista[usuario].email!),
                   trailing: Text(lista[usuario].id!.toString()),
+                  onTap: (){
+                    Get.to(() => EditarUsuarioView(usuario: lista[usuario]));
+                  },
                 ),
               );
             },

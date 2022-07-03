@@ -70,4 +70,6 @@ class UsuarioService extends ChangeNotifier {
     return jsonDecode(response.body)["message"] ??
         "Não foi possível realizar o cadastro";
   }
+
+
 }
