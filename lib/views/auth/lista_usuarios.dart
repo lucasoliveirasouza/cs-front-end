@@ -31,9 +31,6 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
                   title: Text(lista[usuario].username!),
                   subtitle: Text(lista[usuario].email!),
                   trailing: Text(lista[usuario].id!.toString()),
-                  onTap: (){
-                    Get.to(() => EditarUsuarioView(usuario: lista[usuario]));
-                  },
                 ),
               );
             },

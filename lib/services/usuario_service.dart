@@ -98,7 +98,7 @@ class UsuarioService extends ChangeNotifier {
         "email": email,
         "username": usuario,
         "password": user.password.toString(),
-        "role":role.toJson().toString(),
+        "role": role.toJson().toString(),
       }),
     );
 
