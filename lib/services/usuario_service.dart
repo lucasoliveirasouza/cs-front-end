@@ -18,6 +18,7 @@ class UsuarioService extends ChangeNotifier {
   }
 
   _buscarUsuarios() async {
+    _usuarios = [];
     String? value = await storage.read(key: "tokenKey");
     String uri = '${servidor}api/auth/users';
     final response = await http.get(Uri.parse(uri), headers: {
@@ -49,7 +50,7 @@ class UsuarioService extends ChangeNotifier {
       funcao = "admin";
     }
     String? value = await storage.read(key: "tokenKey");
-    final http.Response response = await http.put(
+    final http.Response response = await http.post(
       Uri.parse("${servidor}api/auth/signup"),
       headers: <String, String>{
         'Content-Type': 'application/json',
@@ -62,6 +63,9 @@ class UsuarioService extends ChangeNotifier {
         "role": funcao
       }),
     );
+
+    _buscarUsuarios();
+    notifyListeners();
 
     return jsonDecode(response.body)["message"] ??
         "Não foi possível realizar o cadastro";
