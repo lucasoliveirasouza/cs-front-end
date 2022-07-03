@@ -117,17 +117,14 @@ class UsuarioService extends ChangeNotifier {
   Future<http.Response> deletarUsuario(String id) async {
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.delete(
-      Uri.parse('${servidor}/api/auth/user/${id}'),
+      Uri.parse('${servidor}api/auth/user/${id}'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Authorization': "Bearer ${value}"
       },
     );
-
-    if (response.statusCode == 200) {
-      _usuarios.removeWhere((element) => element.id == id);
-      notifyListeners();
-    }
+    _buscarUsuarios();
+    notifyListeners();
 
     return response;
   }

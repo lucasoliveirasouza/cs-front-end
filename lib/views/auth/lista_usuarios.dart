@@ -26,12 +26,56 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
             itemCount: repositorio.usuarios.length,
             itemBuilder: (BuildContext contexto, int usuario) {
               final List<Usuario> lista = repositorio.usuarios;
-              return Card(
-                child: ListTile(
-                  title: Text(lista[usuario].username!),
-                  subtitle: Text(lista[usuario].email!),
-                  trailing: Text(lista[usuario].id!.toString()),
-
+              final item = lista[usuario].username;
+              return Dismissible(
+                key: Key(item!),
+                child: Card(
+                  child: ListTile(
+                    title: Text(lista[usuario].username!),
+                    subtitle: Text(lista[usuario].email!),
+                    trailing: Text(lista[usuario].id!.toString()),
+                  ),
+                ),
+                confirmDismiss: (DismissDirection direction) async {
+                  return await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Deletar"),
+                        content: Text("Deseja realmente deletar esse usuário?"),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: Text(
+                              "Cancelar",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: Text(
+                                "Deletar",
+                              )),
+                        ],
+                      );
+                    },
+                  );
+                },
+                onDismissed: (direction) {
+                  Provider.of<UsuarioService>(context, listen: false)
+                      .deletarUsuario(lista[usuario].id.toString());
+                  Get.snackbar(
+                    "Excluir usuário",
+                    "Usuário ${lista[usuario].username} excluído",
+                    backgroundColor: Colors.green.shade100,
+                  );
+                },
+                background: Container(
+                  color: Colors.red,
+                  child: Align(
+                    alignment: Alignment(-0.9, 0),
+                    child: Icon(Icons.delete, color: Colors.white),
+                  ),
                 ),
               );
             },
