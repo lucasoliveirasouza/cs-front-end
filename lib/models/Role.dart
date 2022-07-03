@@ -24,10 +24,21 @@ class Role {
   int? get id => _id;
   String? get name => _name;
 
+
+  void setId(int value) {
+    _id = value;
+  }
+
+  void setName(String value) {
+    _name = value;
+  }
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
     map['name'] = _name;
     return map;
   }
+
+
 }

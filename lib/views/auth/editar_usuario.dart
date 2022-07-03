@@ -7,7 +7,8 @@ import 'package:provider/provider.dart';
 
 class EditarUsuarioView extends StatefulWidget {
   Usuario usuario;
-  EditarUsuarioView({Key? key,required this.usuario}) : super(key: key);
+
+  EditarUsuarioView({Key? key, required this.usuario}) : super(key: key);
 
   @override
   _EditarUsuarioViewState createState() => _EditarUsuarioViewState();
@@ -24,11 +25,11 @@ class _EditarUsuarioViewState extends State<EditarUsuarioView> {
   Widget build(BuildContext context) {
     usuario.text = widget.usuario.username!;
     email.text = widget.usuario.email!;
-    if(widget.usuario.role!.name == "ROLE_USER"){
+    if (widget.usuario.role!.name == "ROLE_USER") {
       funcao = "Usuário";
-    }else if(widget.usuario.role!.name == "ROLE_ADMIN"){
+    } else if (widget.usuario.role!.name == "ROLE_ADMIN") {
       funcao = "Administrador";
-    }else{
+    } else {
       funcao = "Moderador";
     }
     return Scaffold(
@@ -84,25 +85,23 @@ class _EditarUsuarioViewState extends State<EditarUsuarioView> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                        Provider.of<UsuarioService>(context, listen: false)
-                            .registrarUsuario(
-                            usuario.text, email.text, "senha.text", funcao)
-                            .then((value) {
-                          if (value == "User registered successfully!") {
-                            Get.snackbar(
-                                "Cadastro de usuário", value.toString(),
-                                backgroundColor: Colors.green.shade100);
-                            Navigator.of(context).pop();
-                          } else {
-                            Get.snackbar(
-                                "Erro ao cadastrar usuário", value.toString(),
-                                backgroundColor: Colors.red.shade100);
-                          }
-                        });
-
+                      Provider.of<UsuarioService>(context, listen: false)
+                          .editarUsuario(
+                              widget.usuario, usuario.text, email.text, funcao)
+                          .then((value) {
+                        if (value == "Editado com sucesso") {
+                          Get.snackbar("Edição de usuário", value.toString(),
+                              backgroundColor: Colors.green.shade100);
+                          Navigator.of(context).pop();
+                        } else {
+                          Get.snackbar(
+                              "Erro ao editar usuário", value.toString(),
+                              backgroundColor: Colors.red.shade100);
+                        }
+                      });
                     }
                   },
-                  child: Text("Cadastrar"),
+                  child: Text("Editar"),
                 ),
               ),
             ],

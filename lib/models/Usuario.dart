@@ -47,6 +47,18 @@ class Usuario {
   String? get password => _password;
   Role? get role => _role;
 
+  void setRole(Role role){
+    _role = role;
+  }
+
+  void setUsername(String user){
+    _username = user;
+  }
+
+  void setEmail(String mail){
+    _email = mail;
+  }
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
