@@ -31,6 +31,7 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
                   title: Text(lista[usuario].username!),
                   subtitle: Text(lista[usuario].email!),
                   trailing: Text(lista[usuario].id!.toString()),
+
                 ),
               );
             },

@@ -86,9 +86,9 @@ class UsuarioService extends ChangeNotifier {
       role.setId(1);
     }
 
-    String? value = await storage.read(key: "token");
+    String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.put(
-      Uri.parse('${servidor}api/autor'),
+      Uri.parse('${servidor}/api/auth/user'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Authorization': "Bearer ${value}"
@@ -96,9 +96,7 @@ class UsuarioService extends ChangeNotifier {
       body: jsonEncode(<String, String>{
         "id": user.id.toString(),
         "email": email,
-        "username": usuario,
-        "password": user.password.toString(),
-        "role": role.toJson().toString(),
+        "username": usuario
       }),
     );
 
@@ -115,6 +113,8 @@ class UsuarioService extends ChangeNotifier {
       return "Não foi possível editar";
     }
   }
+
+
 
 
 }
