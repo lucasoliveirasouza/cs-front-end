@@ -42,7 +42,7 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text("Deletar"),
-                        content: Text("Deseja realmente deletar esse usuário?"),
+                        content: Text("Deseja realmente deletar esse usuário? Essa ação não poderá ser desfeita"),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.of(context).pop(false),
