@@ -12,7 +12,7 @@ Aplicativo Flutter criado para consumir a API desenvolvida na disciplina de Enge
 
 
 #### O Aplicativo:
-O aplicativo encontra-se em fase inicial e inúmeras funcionalidades seão adicionadas;
+O aplicativo encontra-se em fase inicial e inúmeras funcionalidades serão adicionadas;
 
 
 
