@@ -95,7 +95,7 @@ class _EditarUsuarioViewState extends State<EditarUsuarioView> {
                           Navigator.of(context).pop();
                         } else {
                           Get.snackbar(
-                              "Ocorreu um erro ao editar usuário", value.toString(),
+                              "Erro ao editar usuário", value.toString(),
                               backgroundColor: Colors.red.shade100);
                         }
                       });
