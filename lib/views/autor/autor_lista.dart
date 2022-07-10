@@ -15,6 +15,7 @@ class _AutorListaViewState extends State<AutorListaView> {
       appBar: AppBar(
         title: Text("Autores"),
       ),
+      body: Container(),
     );
   }
 }
