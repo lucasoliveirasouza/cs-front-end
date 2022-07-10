@@ -57,12 +57,13 @@ class _AutorListaViewState extends State<AutorListaView> {
                             "Deseja realmente deletar esse autor?"),
                         actions: <Widget>[
                           TextButton(
-                              onPressed: () => Navigator.of(context).pop(true),
-                              child: Text("Deletar",style: TextStyle(color: Colors.red),)),
-                          TextButton(
                             onPressed: () => Navigator.of(context).pop(false),
-                            child: Text("Cancelar"),
+                            child: Text("Cancelar",style: TextStyle(color: Colors.red),),
                           ),
+                          TextButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: Text("Deletar",)),
+
                         ],
                       );
                     },
