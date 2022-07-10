@@ -31,6 +31,10 @@ class Autor {
     _nome = valor;
   }
 
+  void setId(int valor){
+    _id = valor;
+  }
+
   String? get nome => _nome;
 
   Map<String, dynamic> toJson() {
