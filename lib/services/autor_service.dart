@@ -90,7 +90,7 @@ class AutorService extends ChangeNotifier{
     }
   }
 
-  Future<http.Response> deletarAutor(String id) async {
+  Future<String> deletarAutor(String id) async {
     print(id);
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.delete(
@@ -101,8 +101,14 @@ class AutorService extends ChangeNotifier{
       },
     );
 
-    _autores.removeWhere((element) => element.id.toString() == id);
-    notifyListeners();
-    return response;
+    if (response.statusCode == 200) {
+      _autores.removeWhere((element) => element.id.toString() == id);
+      notifyListeners();
+      return "Deletado com sucesso";
+    } else {
+      return "Não foi possível deletar";
+    }
+
+
   }
 }
