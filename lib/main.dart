@@ -1,4 +1,5 @@
 import 'package:csbiblio/services/auth_service.dart';
+import 'package:csbiblio/services/autor_service.dart';
 import 'package:csbiblio/services/usuario_service.dart';
 import 'package:csbiblio/views/auth/auth_check.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ void main() {
     providers: [
       ChangeNotifierProvider(create: (context) => AuthService()),
       ChangeNotifierProvider(create: (context) => UsuarioService()),
+      ChangeNotifierProvider(create: (context) => AutorService()),
     ],
     child: MyApp(),
   ));
