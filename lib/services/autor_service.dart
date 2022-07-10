@@ -91,6 +91,7 @@ class AutorService extends ChangeNotifier{
   }
 
   Future<http.Response> deletarAutor(String id) async {
+    print(id);
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.delete(
       Uri.parse('${servidor}api/autor/${id}'),
