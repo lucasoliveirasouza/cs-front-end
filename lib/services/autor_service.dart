@@ -68,7 +68,7 @@ class AutorService extends ChangeNotifier{
     }
   }
 
-  Future<String> editarAutor(String id, String nome) async {
+  Future<String> editarAutor(Autor autor) async {
     String? value = await storage.read(key: "token");
     final http.Response response = await http.put(
       Uri.parse('${servidor}api/autor'),
@@ -76,16 +76,13 @@ class AutorService extends ChangeNotifier{
         'Content-Type': 'application/json',
         'Authorization': "Bearer ${value}"
       },
-      body: jsonEncode(<String, String>{
-        'id': id,
-        'nome': nome,
-      }),
+      body: json.encode(autor.toJson()),
     );
 
     if (response.statusCode == 200) {
       _autores.forEach((element) {
-        if (element.id == id) {
-          element.setNome(nome);
+        if (element.id == autor.id) {
+          element.setNome(autor.nome!);
           notifyListeners();
         }
       });
