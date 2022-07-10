@@ -2,6 +2,7 @@
 import 'package:csbiblio/models/Autor.dart';
 import 'package:csbiblio/services/autor_service.dart';
 import 'package:csbiblio/views/autor/autor_cadastrar.dart';
+import 'package:csbiblio/views/autor/autor_editar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,10 @@ class _AutorListaViewState extends State<AutorListaView> {
                 child: Card(
                   child: ListTile(
                     title: Center(child: Text(lista[autor].nome!)),
+                    onTap: (){
+                      Get.to(() => AutorEditarView(autor: lista[autor]));
+                    },
+
                   ),
                 ),
                 onDismissed: (direction) {
