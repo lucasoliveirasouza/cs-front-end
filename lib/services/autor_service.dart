@@ -85,7 +85,7 @@ class AutorService extends ChangeNotifier{
     if (response.statusCode == 200) {
       _autores.forEach((element) {
         if (element.id == id) {
-          element.nome = nome;
+          element.setNome(nome);
           notifyListeners();
         }
       });
