@@ -1,6 +1,7 @@
 
 import 'package:csbiblio/models/Autor.dart';
 import 'package:csbiblio/services/autor_service.dart';
+import 'package:csbiblio/views/autor/autor_cadastrar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -76,6 +77,12 @@ class _AutorListaViewState extends State<AutorListaView> {
             padding: EdgeInsets.all(16),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Get.to(() => AutorCadastrarView());
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
