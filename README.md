@@ -13,7 +13,7 @@ Aplicativo criado para consumir a API desenvolvida na disciplina de Engenharia d
 
 
 #### O Aplicativo:
-O aplicativo encontra-se em fase inicial e inúmeras funcionalidades serão adicionadas, a medida que a disciplina avança;
+O aplicativo encontra-se em fase inicial e inúmeras funcionalidades serão adicionadas a medida que a disciplina avança;
 
 
 
