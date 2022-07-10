@@ -20,8 +20,7 @@ class AutorService extends ChangeNotifier{
   }
 
   _buscarAutores() async {
-    String? value = await storage.read(key: "token");
-    print(value);
+    String? value = await storage.read(key: "tokenKey");
     String uri = '${servidor}api/autores';
     final response = await http.get(Uri.parse(uri), headers: {
       'Content-Type': 'application/json',
@@ -42,7 +41,7 @@ class AutorService extends ChangeNotifier{
 
 
   Future<String> cadastrarAutor(String nome) async {
-    String? value = await storage.read(key: "token");
+    String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.post(
       Uri.parse('${servidor}api/autor'),
       headers: <String, String>{
@@ -50,7 +49,7 @@ class AutorService extends ChangeNotifier{
         'Authorization': "Bearer ${value}"
       },
       body: jsonEncode(<String, String>{
-        'nome': nome,
+        'name': nome,
       }),
     );
 
@@ -68,7 +67,7 @@ class AutorService extends ChangeNotifier{
   }
 
   Future<String> editarAutor(Autor autor) async {
-    String? value = await storage.read(key: "token");
+    String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.put(
       Uri.parse('${servidor}api/autor'),
       headers: <String, String>{
@@ -92,7 +91,7 @@ class AutorService extends ChangeNotifier{
   }
 
   Future<http.Response> deletarAutor(String id) async {
-    String? value = await storage.read(key: "token");
+    String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.delete(
       Uri.parse('${servidor}api/autor/${id}'),
       headers: <String, String>{
@@ -101,7 +100,7 @@ class AutorService extends ChangeNotifier{
       },
     );
 
-    _autores.removeWhere((element) => element.id == id);
+    _autores.removeWhere((element) => element.id.toString() == id);
     notifyListeners();
     return response;
   }

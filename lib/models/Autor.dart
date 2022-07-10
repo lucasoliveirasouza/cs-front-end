@@ -10,7 +10,7 @@ class Autor {
 
   Autor.fromJson(dynamic json) {
     _id = json['id'];
-    _nome = json['nome'];
+    _nome = json['name'];
   }
 
   int? _id;
@@ -40,7 +40,7 @@ class Autor {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['nome'] = _nome;
+    map['name'] = _nome;
     return map;
   }
 }

@@ -29,10 +29,10 @@ class _AutorListaViewState extends State<AutorListaView> {
               final List<Autor> lista = repositorio.autores;
               final item = lista[autor].nome;
               return Dismissible(
-                key: Key(item!),
+                key: Key(item ?? "teste"),
                 child: Card(
                   child: ListTile(
-                    title: Center(child: Text(lista[autor].nome!)),
+                    title: Center(child: Text(lista[autor].nome ?? "")),
                     onTap: (){
                       Get.to(() => AutorEditarView(autor: lista[autor]));
                     },
