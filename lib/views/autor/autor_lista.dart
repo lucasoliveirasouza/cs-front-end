@@ -41,12 +41,11 @@ class _AutorListaViewState extends State<AutorListaView> {
                 ),
                 onDismissed: (direction) {
                   Provider.of<AutorService>(context, listen: false)
-                      .deletarAutor(lista[autor].id.toString());
-                  Get.snackbar(
-                    "Excluir autor",
-                    "Autor ${lista[autor].nome} excluído",
-                    backgroundColor: Colors.green.shade100,
-                  );
+                      .deletarAutor(lista[autor].id.toString()).then((value) => {
+                    Get.snackbar(
+                        "Excluir autor", value.toString(),
+                        backgroundColor: Colors.green.shade50)
+                  });
                 },
                 confirmDismiss: (DismissDirection direction) async {
                   return await showDialog(
