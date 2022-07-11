@@ -46,7 +46,7 @@ class _AutorCadastrarViewState extends State<AutorCadastrarView> {
 
                         if (value == "Cadatrado com sucesso") {
                           Get.snackbar(
-                              "Cadastro de usuário", value.toString(),
+                              "Cadastro de autor", value.toString(),
                               backgroundColor: Colors.green.shade100);
                           Navigator.of(context).pop();
                         } else {
