@@ -61,7 +61,7 @@ class _LoginViewState extends State<LoginView> {
                       .then((value) => {
                     Get.snackbar(
                         "Login de usuário", value.toString(),
-                        backgroundColor: Colors.green.shade50)
+                        backgroundColor: Colors.white)
                   });
 
                 },

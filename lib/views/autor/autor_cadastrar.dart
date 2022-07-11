@@ -45,7 +45,7 @@ class _AutorCadastrarViewState extends State<AutorCadastrarView> {
                           .then((value) => {
                         Get.snackbar(
                             "Cadastro de autor", value.toString(),
-                            backgroundColor: Colors.green.shade50)
+                            backgroundColor: Colors.white)
                       });
                       Navigator.of(context).pop();
                     }
