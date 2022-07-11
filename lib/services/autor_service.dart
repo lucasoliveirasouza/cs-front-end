@@ -1,5 +1,4 @@
 
-
 import 'dart:collection';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -57,7 +56,6 @@ class AutorService extends ChangeNotifier{
       final json = jsonDecode(response.body);
       final autor = json;
       Autor aut = Autor.fromJson(autor);
-      print(aut.nome);
       _autores.add(aut);
       notifyListeners();
 
