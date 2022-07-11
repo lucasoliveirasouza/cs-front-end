@@ -57,6 +57,7 @@ class AutorService extends ChangeNotifier{
       final json = jsonDecode(response.body);
       final autor = json;
       Autor aut = Autor.fromJson(autor);
+      print(aut.nome);
       _autores.add(aut);
       notifyListeners();
 
