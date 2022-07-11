@@ -48,10 +48,16 @@ class _AutorEditarViewState extends State<AutorEditarView> {
                       autor.setId(widget.autor.id!);
                       Provider.of<AutorService>(context, listen: false)
                           .editarAutor(autor)
-                          .then((value) => {
-                        Get.snackbar(
-                            "Edição de autor", value.toString(),
-                            backgroundColor: Colors.white)
+                          .then((value){
+                        if (value == "Editado com sucesso") {
+                          Get.snackbar("Edição de autor", value.toString(),
+                              backgroundColor: Colors.green.shade100);
+                          Navigator.of(context).pop();
+                        } else {
+                          Get.snackbar(
+                              "Erro ao editar autor", value.toString(),
+                              backgroundColor: Colors.red.shade100);
+                        }
                       });
                       Navigator.of(context).pop();
                     }

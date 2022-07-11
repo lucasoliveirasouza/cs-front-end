@@ -42,10 +42,18 @@ class _AutorCadastrarViewState extends State<AutorCadastrarView> {
                     if (formKey.currentState!.validate()) {
                       Provider.of<AutorService>(context, listen: false)
                           .cadastrarAutor(nome.text)
-                          .then((value) => {
-                        Get.snackbar(
-                            "Cadastro de autor", value.toString(),
-                            backgroundColor: Colors.white)
+                          .then((value) {
+
+                        if (value == "Cadatrado com sucesso") {
+                          Get.snackbar(
+                              "Cadastro de usuário", value.toString(),
+                              backgroundColor: Colors.green.shade100);
+                          Navigator.of(context).pop();
+                        } else {
+                          Get.snackbar(
+                              "Erro ao cadastrar autor", value.toString(),
+                              backgroundColor: Colors.red.shade100);
+                        }
                       });
                       Navigator.of(context).pop();
                     }
