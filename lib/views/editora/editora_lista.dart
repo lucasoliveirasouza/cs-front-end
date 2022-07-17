@@ -2,6 +2,7 @@
 import 'package:csbiblio/models/Editora.dart';
 import 'package:csbiblio/services/editora_service.dart';
 import 'package:csbiblio/views/editora/editora_cadastrar.dart';
+import 'package:csbiblio/views/editora/editora_editar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +34,7 @@ class _EditoraListaViewState extends State<EditoraListaView> {
                   child: ListTile(
                     title: Center(child: Text(lista[editora].nome ?? "")),
                     onTap: (){
-                      //Get.to(() => EditoraEditarView(editora: lista[editora]));
+                      Get.to(() => EditoraEditarView(editora: lista[editora]));
                     },
 
                   ),
