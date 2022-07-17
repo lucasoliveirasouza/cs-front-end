@@ -2,6 +2,7 @@ import 'package:csbiblio/services/auth_service.dart';
 import 'package:csbiblio/views/auth/lista_usuarios.dart';
 import 'package:csbiblio/views/auth/login.dart';
 import 'package:csbiblio/views/autor/autor_lista.dart';
+import 'package:csbiblio/views/editora/editora_lista.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -74,7 +75,7 @@ class _MenuViewState extends State<MenuView> {
               title: Text('Editoras'),
               trailing: Icon(Icons.arrow_forward_ios),
               onTap: () {
-                Navigator.pop(context);
+                Get.to(() => EditoraListaView());
               },
             ),
             ListTile(

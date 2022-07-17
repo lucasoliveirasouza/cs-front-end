@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
+import 'services/editora_service.dart';
+
 
 void main() {
   runApp(MultiProvider(
@@ -13,6 +15,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => AuthService()),
       ChangeNotifierProvider(create: (context) => UsuarioService()),
       ChangeNotifierProvider(create: (context) => AutorService()),
+      ChangeNotifierProvider(create: (context) => EditoraService()),
     ],
     child: MyApp(),
   ));
