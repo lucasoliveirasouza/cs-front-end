@@ -1,4 +1,3 @@
-
 import 'dart:collection';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -7,8 +6,7 @@ import 'package:csbiblio/util/contantes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-class AutorService extends ChangeNotifier{
-
+class AutorService extends ChangeNotifier {
   List<Autor> _autores = [];
   final storage = new FlutterSecureStorage();
 
@@ -38,7 +36,6 @@ class AutorService extends ChangeNotifier{
     }
   }
 
-
   Future<String> cadastrarAutor(String nome) async {
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.post(
@@ -48,7 +45,7 @@ class AutorService extends ChangeNotifier{
         'Authorization': "Bearer ${value}"
       },
       body: jsonEncode(<String, String>{
-        'name': nome,
+        'nome': nome,
       }),
     );
 
@@ -107,7 +104,5 @@ class AutorService extends ChangeNotifier{
     } else {
       return "Não foi possível deletar";
     }
-
-
   }
 }

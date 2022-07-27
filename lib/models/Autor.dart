@@ -1,4 +1,3 @@
-
 class Autor {
   Autor({
     int? id,
@@ -10,7 +9,7 @@ class Autor {
 
   Autor.fromJson(dynamic json) {
     _id = json['id'];
-    _nome = json['name'];
+    _nome = json['nome'];
   }
 
   int? _id;
@@ -27,11 +26,11 @@ class Autor {
 
   int? get id => _id;
 
-  void setNome(String valor){
+  void setNome(String valor) {
     _nome = valor;
   }
 
-  void setId(int valor){
+  void setId(int valor) {
     _id = valor;
   }
 
@@ -40,7 +39,7 @@ class Autor {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['name'] = _nome;
+    map['nome'] = _nome;
     return map;
   }
 }
