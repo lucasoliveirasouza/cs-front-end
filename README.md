@@ -8,7 +8,7 @@
 #### Descrição:
 Aplicativo criado para consumir a API desenvolvida na disciplina de Engenharia de Software. Com ele, até o momento, é possível fazer as seguintes ações:
 * Realizar cadastro, edição, exclusão e listagem de usuários;
-* Realizar Login e Logout;
+* Realizar login e logout;
 * Realizar cadastro, edição, exclusão e listagem de autores;
 * Realizar cadastro, edição, exclusão e listagem de editoras;
 
