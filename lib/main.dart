@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import 'services/editora_service.dart';
 
-
 void main() {
   runApp(MultiProvider(
     providers: [
@@ -30,12 +29,9 @@ class MyApp extends StatelessWidget {
       title: 'Biblioteca',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         primarySwatch: Colors.green,
       ),
       home: AuthCheck(),
     );
   }
 }
-
-
