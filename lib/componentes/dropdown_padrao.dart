@@ -1,4 +1,4 @@
-import 'package:biblioteca/models/IModel.dart';
+import 'package:csbiblio/models/IModel.dart';
 import 'package:flutter/material.dart';
 
 class DropdownPadrao<T extends IModel> extends StatefulWidget {
