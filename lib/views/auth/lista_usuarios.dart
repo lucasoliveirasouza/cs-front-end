@@ -34,6 +34,9 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
                     title: Text(lista[usuario].username!),
                     subtitle: Text(lista[usuario].email!),
                     trailing: Text(lista[usuario].id!.toString()),
+                    onTap: () {
+                      Get.to(() => EditarUsuarioView(usuario: lista[usuario]));
+                    },
                   ),
                 ),
                 confirmDismiss: (DismissDirection direction) async {
@@ -42,7 +45,8 @@ class _ListaUsuariosViewState extends State<ListaUsuariosView> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: Text("Deletar"),
-                        content: Text("Deseja realmente deletar esse usuário? Essa ação não poderá ser desfeita e poderá trazer problemas"),
+                        content: Text(
+                            "Deseja realmente deletar esse usuário? Essa ação não poderá ser desfeita e poderá trazer problemas"),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.of(context).pop(false),
