@@ -37,6 +37,28 @@ class EditoraService extends ChangeNotifier {
     }
   }
 
+  Future<List<Editora?>?> getAll() async {
+    String? value = await storage.read(key: "tokenKey");
+
+    List<Editora> edi = [];
+    String uri = '${servidor}api/editoras';
+    final response = await http.get(Uri.parse(uri), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ${value}"
+    });
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      List<dynamic> listaautores = json;
+
+      listaautores.forEach((autor) {
+        Editora ed = Editora.fromJson(autor);
+        edi.add(ed);
+      });
+    }
+    return edi;
+  }
+
   Future<String> cadastrarEditora(String nome) async {
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.post(
