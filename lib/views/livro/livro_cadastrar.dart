@@ -39,21 +39,28 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
               ),
               FormFieldPadrao(
                 controle: nome,
-                title: "Nome",
+                title: "Nome da saga",
               ),
               SizedBox(
                 height: 15,
               ),
               FormFieldPadrao(
                 controle: nome,
-                title: "Nome",
+                title: "Edição",
               ),
               SizedBox(
                 height: 15,
               ),
               FormFieldPadrao(
                 controle: nome,
-                title: "Nome",
+                title: "Ano de publicação",
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              FormFieldPadrao(
+                controle: nome,
+                title: "Código",
               ),
               SizedBox(
                 height: 15,
@@ -68,6 +75,9 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
                 child: 'nome',
                 value: 'id',
               ),
+              SizedBox(
+                height: 15,
+              ),
               DropdownPadrao<Editora>(
                 nome: "Autor",
                 future: EditoraService().getAll(),
@@ -77,6 +87,13 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
                 initialValue: autorId,
                 child: 'nome',
                 value: 'id',
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              FormFieldPadrao(
+                controle: nome,
+                title: "Quntidade",
               ),
             ],
           ),
