@@ -11,6 +11,8 @@ Aplicativo criado para consumir a API desenvolvida na disciplina de Engenharia d
 * Realizar login e logout;
 * Realizar cadastro, edição, exclusão e listagem de autores;
 * Realizar cadastro, edição, exclusão e listagem de editoras;
+* Realizar cadastro, edição, exclusão e listagem de gênero;
+
 
 
 #### O Aplicativo:
