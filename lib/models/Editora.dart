@@ -1,7 +1,8 @@
+import 'IModel.dart';
 
-class Editora {
+class Editora extends IModel {
   Editora({
-    int? id,
+    String? id,
     String? nome,
   }) {
     _id = id;
@@ -9,15 +10,15 @@ class Editora {
   }
 
   Editora.fromJson(dynamic json) {
-    _id = json['id'];
+    _id = json['id'].toString();
     _nome = json['nome'];
   }
 
-  int? _id;
+  String? _id;
   String? _nome;
 
   Editora copyWith({
-    int? id,
+    String? id,
     String? nome,
   }) =>
       Editora(
@@ -25,13 +26,13 @@ class Editora {
         nome: nome ?? _nome,
       );
 
-  int? get id => _id;
+  String? get id => _id;
 
-  void setNome(String valor){
+  void setNome(String valor) {
     _nome = valor;
   }
 
-  void setId(int valor){
+  void setId(String valor) {
     _id = valor;
   }
 
