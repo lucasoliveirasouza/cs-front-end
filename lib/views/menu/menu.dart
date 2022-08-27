@@ -4,6 +4,7 @@ import 'package:csbiblio/views/auth/login.dart';
 import 'package:csbiblio/views/autor/autor_lista.dart';
 import 'package:csbiblio/views/editora/editora_lista.dart';
 import 'package:csbiblio/views/genero/genero_lista.dart';
+import 'package:csbiblio/views/livro/livro_cadastrar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -103,6 +104,12 @@ class _MenuViewState extends State<MenuView> {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => LivroCadastrarView());
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
