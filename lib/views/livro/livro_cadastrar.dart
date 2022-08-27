@@ -1,4 +1,7 @@
+import 'package:csbiblio/componentes/dropdown_padrao.dart';
 import 'package:csbiblio/componentes/form_field_padrao.dart';
+import 'package:csbiblio/models/Autor.dart';
+import 'package:csbiblio/services/autor_service.dart';
 import 'package:flutter/material.dart';
 
 class LivroCadastrarView extends StatefulWidget {
@@ -11,6 +14,7 @@ class LivroCadastrarView extends StatefulWidget {
 class _LivroCadastrarViewState extends State<LivroCadastrarView> {
   final nome = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  String autorId = "";
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +55,16 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
               ),
               SizedBox(
                 height: 15,
+              ),
+              DropdownPadrao<Autor>(
+                nome: "Autor",
+                future: AutorService().getAll(),
+                onSelect: (value) {
+                  autorId = value;
+                },
+                initialValue: autorId,
+                child: 'nome',
+                value: 'id',
               ),
             ],
           ),

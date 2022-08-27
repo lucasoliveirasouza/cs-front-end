@@ -1,6 +1,8 @@
-class Autor {
+import 'IModel.dart';
+
+class Autor extends IModel {
   Autor({
-    int? id,
+    String? id,
     String? nome,
   }) {
     _id = id;
@@ -8,15 +10,15 @@ class Autor {
   }
 
   Autor.fromJson(dynamic json) {
-    _id = json['id'];
+    _id = json['id'].toString();
     _nome = json['nome'];
   }
 
-  int? _id;
+  String? _id;
   String? _nome;
 
   Autor copyWith({
-    int? id,
+    String? id,
     String? nome,
   }) =>
       Autor(
@@ -24,13 +26,13 @@ class Autor {
         nome: nome ?? _nome,
       );
 
-  int? get id => _id;
+  String? get id => _id;
 
   void setNome(String valor) {
     _nome = valor;
   }
 
-  void setId(int valor) {
+  void setId(String valor) {
     _id = valor;
   }
 

@@ -1,10 +1,11 @@
 import 'dart:collection';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:csbiblio/models/Autor.dart';
 import 'package:csbiblio/util/contantes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:http/http.dart' as http;
 
 class AutorService extends ChangeNotifier {
   List<Autor> _autores = [];
@@ -34,6 +35,28 @@ class AutorService extends ChangeNotifier {
       });
       notifyListeners();
     }
+  }
+
+  Future<List<Autor?>?> getAll() async {
+    String? value = await storage.read(key: "tokenKey");
+
+    List<Autor> aut = [];
+    String uri = '${servidor}api/autores';
+    final response = await http.get(Uri.parse(uri), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ${value}"
+    });
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      List<dynamic> listaautores = json;
+
+      listaautores.forEach((autor) {
+        Autor at = Autor.fromJson(autor);
+        aut.add(at);
+      });
+    }
+    return aut;
   }
 
   Future<String> cadastrarAutor(String nome) async {
