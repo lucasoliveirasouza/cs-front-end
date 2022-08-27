@@ -10,6 +10,11 @@ class LivroCadastrarView extends StatefulWidget {
 class _LivroCadastrarViewState extends State<LivroCadastrarView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Cadastrar livro"),
+      ),
+      body: Container(),
+    );
   }
 }
