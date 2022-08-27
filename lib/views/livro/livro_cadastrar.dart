@@ -1,7 +1,9 @@
 import 'package:csbiblio/componentes/dropdown_padrao.dart';
 import 'package:csbiblio/componentes/form_field_padrao.dart';
 import 'package:csbiblio/models/Autor.dart';
+import 'package:csbiblio/models/Editora.dart';
 import 'package:csbiblio/services/autor_service.dart';
+import 'package:csbiblio/services/editora_service.dart';
 import 'package:flutter/material.dart';
 
 class LivroCadastrarView extends StatefulWidget {
@@ -59,6 +61,16 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
               DropdownPadrao<Autor>(
                 nome: "Autor",
                 future: AutorService().getAll(),
+                onSelect: (value) {
+                  autorId = value;
+                },
+                initialValue: autorId,
+                child: 'nome',
+                value: 'id',
+              ),
+              DropdownPadrao<Editora>(
+                nome: "Autor",
+                future: EditoraService().getAll(),
                 onSelect: (value) {
                   autorId = value;
                 },
