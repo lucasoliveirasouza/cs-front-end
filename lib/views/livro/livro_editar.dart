@@ -1,7 +1,9 @@
+import 'package:csbiblio/models/Livro.dart';
 import 'package:flutter/material.dart';
 
 class LivroEditarView extends StatefulWidget {
-  const LivroEditarView({Key? key}) : super(key: key);
+  Livro livro;
+  LivroEditarView({Key? key, required this.livro}) : super(key: key);
 
   @override
   State<LivroEditarView> createState() => _LivroEditarViewState();
