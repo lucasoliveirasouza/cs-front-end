@@ -164,6 +164,14 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
               return Card(
                 child: ListTile(
                   title: Text(generos[index].nome ?? "test"),
+                  trailing: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        generos.remove(generos[index]);
+                      });
+                    },
+                    icon: Icon(Icons.delete),
+                  ),
                 ),
               );
             }),
@@ -193,7 +201,6 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
         setState(() {
           editora = value!;
         });
-        print(autor.nome);
         livro.setAutor(autor);
         livro.setEditora(editora);
         livro.setGenero(generos);
