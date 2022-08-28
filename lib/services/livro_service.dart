@@ -37,7 +37,7 @@ class LivroService extends ChangeNotifier {
   }
 
   Future<String> cadastrarLivro(Livro livro) async {
-    print(livro.editora?.nome ?? "");
+    //print(livro.editora?.nome ?? "");
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.post(
       Uri.parse('${servidor}api/livro'),
@@ -49,7 +49,7 @@ class LivroService extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      return "Cadatrado com sucesso";
+      return "Cadastrado com sucesso";
     } else {
       return "Não foi possível realizar o cadastro";
     }

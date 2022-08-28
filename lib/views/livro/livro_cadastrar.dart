@@ -9,6 +9,8 @@ import 'package:csbiblio/services/editora_service.dart';
 import 'package:csbiblio/services/genero_service.dart';
 import 'package:csbiblio/services/livro_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class LivroCadastrarView extends StatefulWidget {
   const LivroCadastrarView({Key? key}) : super(key: key);
@@ -138,29 +140,6 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  Livro livro = Livro();
-                  livro.setTitulo(titulo.text);
-                  livro.setNomeSaga(nomeSaga.text);
-                  livro.setEdicao(edicao.text);
-                  livro.setAnoPublicacao(int.parse(anoPublicacao.text));
-                  livro.setCodigo(codigo.text);
-                  livro.setQuantidade(int.parse(quantidade.text));
-                  AutorService().getById(autorId).then((value) => {
-                        setState(() {
-                          autor = value!;
-                        })
-                      });
-                  EditoraService().getById(editoraId).then((value) => {
-                        setState(() {
-                          editora = value!;
-                        })
-                      });
-                  print(autor.nome);
-                  livro.setAutor(autor);
-                  livro.setEditora(editora);
-                  livro.setGenero(generos);
-                  LivroService().cadastrarLivro(livro);
-
                   salvarLivro();
                 },
                 child: Text(
@@ -198,7 +177,42 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
     );
   }
 
-  salvarLivro() {}
+  salvarLivro() {
+    Livro livro = Livro();
+    livro.setTitulo(titulo.text);
+    livro.setNomeSaga(nomeSaga.text);
+    livro.setEdicao(edicao.text);
+    livro.setAnoPublicacao(int.parse(anoPublicacao.text));
+    livro.setCodigo(codigo.text);
+    livro.setQuantidade(int.parse(quantidade.text));
+    AutorService().getById(autorId).then((value) {
+      setState(() {
+        autor = value!;
+      });
+      EditoraService().getById(editoraId).then((value) {
+        setState(() {
+          editora = value!;
+        });
+        print(autor.nome);
+        livro.setAutor(autor);
+        livro.setEditora(editora);
+        livro.setGenero(generos);
+
+        Provider.of<LivroService>(context, listen: false)
+            .cadastrarLivro(livro)
+            .then((value) {
+          if (value == "Cadastrado com sucesso") {
+            Get.snackbar("Cadastro de editora", value.toString(),
+                backgroundColor: Colors.green.shade100);
+            Navigator.of(context).pop();
+          } else {
+            Get.snackbar("Erro ao cadastrar editora", value.toString(),
+                backgroundColor: Colors.red.shade100);
+          }
+        });
+      });
+    });
+  }
 
   addGenero() {
     String generoId = "";
