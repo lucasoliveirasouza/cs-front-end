@@ -44,11 +44,12 @@ class _LivroEditarViewState extends State<LivroEditarView> {
     List<Genero>? generos = widget.livro.genero;
     autorId = widget.livro.autor!.id!;
     editoraId = widget.livro.editora!.id!;
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-            title: Text("Cadastrar livro"),
+            title: Text("Editar livro"),
             bottom: TabBar(
               tabs: <Widget>[
                 Tab(
@@ -164,15 +165,16 @@ class _LivroEditarViewState extends State<LivroEditarView> {
   }
 
   Widget Generos() {
+    List<Genero>? generos = widget.livro.genero;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(20),
         child: ListView.builder(
-            itemCount: generos.length,
+            itemCount: generos?.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 child: ListTile(
-                  title: Text(generos[index].nome ?? "test"),
+                  title: Text(generos![index].nome ?? "test"),
                 ),
               );
             }),
