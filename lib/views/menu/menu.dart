@@ -43,12 +43,12 @@ class _MenuViewState extends State<MenuView> {
                   ),
                 ),
                 onDismissed: (direction) {
-                  /*Provider.of<LivroService>(context, listen: false)
-                      .deletarEditora(lista[editora].id.toString())
+                  Provider.of<LivroService>(context, listen: false)
+                      .deletarLivro(lista[livro].id.toString())
                       .then((value) => {
-                            Get.snackbar("Excluir editora", value.toString(),
+                            Get.snackbar("Excluir Livro", value.toString(),
                                 backgroundColor: Colors.green.shade50)
-                          });*/
+                          });
                 },
                 confirmDismiss: (DismissDirection direction) async {
                   return await showDialog(

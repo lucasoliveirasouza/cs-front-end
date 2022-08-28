@@ -18,6 +18,7 @@ class LivroService extends ChangeNotifier {
   }
 
   _buscarLivros() async {
+    _livros = [];
     String? value = await storage.read(key: "tokenKey");
     String uri = '${servidor}api/livro/lista';
     final response = await http.get(Uri.parse(uri), headers: {
@@ -49,9 +50,29 @@ class LivroService extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
+      _buscarLivros();
       return "Cadastrado com sucesso";
     } else {
       return "Não foi possível realizar o cadastro";
+    }
+  }
+
+  Future<String> deletarLivro(String id) async {
+    print(id);
+    String? value = await storage.read(key: "tokenKey");
+    final http.Response response = await http.delete(
+      Uri.parse('${servidor}api/livro/${id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer ${value}"
+      },
+    );
+
+    if (response.statusCode == 200) {
+      _buscarLivros();
+      return "Deletado com sucesso";
+    } else {
+      return "Não foi possível deletar";
     }
   }
 }
