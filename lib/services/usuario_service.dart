@@ -1,9 +1,8 @@
 import 'dart:collection';
 import 'dart:convert';
-import 'dart:math';
+
 import 'package:csbiblio/models/Role.dart';
 import 'package:csbiblio/models/Usuario.dart';
-
 import 'package:csbiblio/util/contantes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -73,13 +72,14 @@ class UsuarioService extends ChangeNotifier {
         "Não foi possível realizar o cadastro";
   }
 
-  Future<String> editarUsuario(Usuario user,String usuario, String email, String funcao) async {
+  Future<String> editarUsuario(
+      Usuario user, String usuario, String email, String funcao) async {
     Role role = Role();
     if (funcao == "Usuário") {
       role.setName("ROLE_USER");
       role.setId(3);
-    } else if (funcao == "Moderador") {
-      role.setName("ROLE_MODERATOR");
+    } else if (funcao == "Bibliotecário") {
+      role.setName("ROLE_LIBRARIAN");
       role.setId(2);
     } else {
       role.setName("ROLE_ADMIN");
@@ -128,6 +128,4 @@ class UsuarioService extends ChangeNotifier {
 
     return response;
   }
-
-
 }

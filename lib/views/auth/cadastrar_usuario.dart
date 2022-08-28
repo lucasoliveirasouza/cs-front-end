@@ -18,7 +18,7 @@ class _CadastrarUsuarioViewState extends State<CadastrarUsuarioView> {
   final confirmarSenha = TextEditingController();
   final formKey = GlobalKey<FormState>();
   String funcao = 'Usuário';
-  List<String> funcoes = ["Usuário", "Moderador", "Administrador"];
+  List<String> funcoes = ["Usuário", "Bibliotecário", "Administrador"];
 
   @override
   Widget build(BuildContext context) {
