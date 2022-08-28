@@ -35,6 +35,15 @@ class _LivroEditarViewState extends State<LivroEditarView> {
   String editoraId = "";
   @override
   Widget build(BuildContext context) {
+    titulo.text = widget.livro.titulo!;
+    nomeSaga.text = widget.livro.nomeSaga!;
+    edicao.text = widget.livro.edicao!;
+    anoPublicacao.text = widget.livro.anoPublicacao!.toString();
+    codigo.text = widget.livro.codigo!;
+    quantidade.text = widget.livro.quantidade!.toString();
+    List<Genero> generos = widget.livro.genero!;
+    autorId = widget.livro.autor!.id!;
+    editoraId = widget.livro.editora!.id!;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
