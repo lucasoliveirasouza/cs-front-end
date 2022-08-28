@@ -59,6 +59,25 @@ class AutorService extends ChangeNotifier {
     return aut;
   }
 
+  Future<Autor?> getById(String id) async {
+    Autor? autor;
+    String? value = await storage.read(key: "tokenKey");
+    String uri = '${servidor}api/autor/${id}';
+    final response = await http.get(Uri.parse(uri), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ${value}"
+    });
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+
+      Autor at = Autor.fromJson(json);
+      //print(gr.nome);
+      return at;
+    }
+    return autor;
+  }
+
   Future<String> cadastrarAutor(String nome) async {
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.post(
