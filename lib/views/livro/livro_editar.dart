@@ -263,9 +263,6 @@ class _LivroEditarViewState extends State<LivroEditarView> {
                       })
                     });
                 Navigator.of(context).pop(false);
-
-                /* AuthService().logout();
-                Get.to(() => LoginView());*/
               },
               child: Text(
                 "Adicionar",
