@@ -143,6 +143,7 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
   Widget Generos() {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.all(20),
         child: ListView.builder(
             itemCount: generos.length,
             itemBuilder: (BuildContext context, int index) {
