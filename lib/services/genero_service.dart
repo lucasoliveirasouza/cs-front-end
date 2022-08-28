@@ -37,6 +37,28 @@ class GeneroService extends ChangeNotifier {
     }
   }
 
+  Future<List<Genero?>?> getAll() async {
+    String? value = await storage.read(key: "tokenKey");
+
+    List<Genero> gen = [];
+    String uri = '${servidor}api/generos';
+    final response = await http.get(Uri.parse(uri), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ${value}"
+    });
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+      List<dynamic> listaautores = json;
+
+      listaautores.forEach((autor) {
+        Genero gr = Genero.fromJson(autor);
+        gen.add(gr);
+      });
+    }
+    return gen;
+  }
+
   Future<String> cadastrarGenero(String nome) async {
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.post(

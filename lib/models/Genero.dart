@@ -10,7 +10,7 @@ class Genero extends IModel {
   }
 
   Genero.fromJson(dynamic json) {
-    _id = json['id'];
+    _id = json['id'].toString();
     _nome = json['nome'];
   }
 
