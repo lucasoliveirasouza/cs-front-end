@@ -18,6 +18,13 @@ class Livro {
     _id = id;
     _nomeSaga = nomeSaga;
     _titulo = titulo;
+    _edicao = edicao;
+    _anoPublicacao = _anoPublicacao;
+    _codigo = codigo;
+    _quantidade = quantidade;
+    _autor = autor;
+    _editora = editora;
+    _genero = genero;
   }
 
   Livro.fromJson(dynamic json) {
@@ -68,5 +75,65 @@ class Livro {
       map['genero'] = _genero!.map((v) => v.toJson()).toList();
     }
     return map;
+  }
+
+  int? get id => _id;
+
+  void setId(int value) {
+    _id = value;
+  }
+
+  String? get nomeSaga => _nomeSaga;
+
+  void setNomeSaga(String value) {
+    _nomeSaga = value;
+  }
+
+  String? get titulo => _titulo;
+
+  void setTitulo(String value) {
+    _titulo = value;
+  }
+
+  String? get edicao => _edicao;
+
+  void setEdicao(String value) {
+    _edicao = value;
+  }
+
+  int? get anoPublicacao => _anoPublicacao;
+
+  void setAnoPublicacao(int value) {
+    _anoPublicacao = value;
+  }
+
+  String? get codigo => _codigo;
+
+  void setCodigo(String value) {
+    _codigo = value;
+  }
+
+  int? get quantidade => _quantidade;
+
+  void setQuantidade(int value) {
+    _quantidade = value;
+  }
+
+  Autor? get autor => _autor;
+
+  void setAutor(Autor value) {
+    _autor = value;
+  }
+
+  Editora? get editora => _editora;
+
+  void setEditora(Editora value) {
+    _editora = value;
+  }
+
+  List<Genero>? get genero => _genero;
+
+  void setGenero(List<Genero> value) {
+    _genero = value;
   }
 }
