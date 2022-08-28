@@ -5,6 +5,7 @@ import 'package:csbiblio/models/Editora.dart';
 import 'package:csbiblio/models/Genero.dart';
 import 'package:csbiblio/services/autor_service.dart';
 import 'package:csbiblio/services/editora_service.dart';
+import 'package:csbiblio/services/genero_service.dart';
 import 'package:flutter/material.dart';
 
 class LivroCadastrarView extends StatefulWidget {
@@ -151,18 +152,19 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
   }
 
   addGenero() {
+    String generoId = "";
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Selecione um gênero"),
-          content: DropdownPadrao<Autor>(
-            nome: "Autor",
-            future: AutorService().getAll(),
+          content: DropdownPadrao<Genero>(
+            nome: "Genero",
+            future: GeneroService().getAll(),
             onSelect: (value) {
-              autorId = value;
+              generoId = value;
             },
-            initialValue: autorId,
+            initialValue: generoId,
             child: 'nome',
             value: 'id',
           ),
