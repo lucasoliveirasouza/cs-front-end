@@ -35,4 +35,23 @@ class LivroService extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<String> cadastrarLivro(Livro livro) async {
+    print(livro.editora?.nome ?? "");
+    String? value = await storage.read(key: "tokenKey");
+    final http.Response response = await http.post(
+      Uri.parse('${servidor}api/livro'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer ${value}"
+      },
+      body: json.encode(livro.toJson()),
+    );
+
+    if (response.statusCode == 200) {
+      return "Cadatrado com sucesso";
+    } else {
+      return "Não foi possível realizar o cadastro";
+    }
+  }
 }

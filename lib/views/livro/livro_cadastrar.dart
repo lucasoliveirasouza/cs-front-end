@@ -3,9 +3,11 @@ import 'package:csbiblio/componentes/form_field_padrao.dart';
 import 'package:csbiblio/models/Autor.dart';
 import 'package:csbiblio/models/Editora.dart';
 import 'package:csbiblio/models/Genero.dart';
+import 'package:csbiblio/models/Livro.dart';
 import 'package:csbiblio/services/autor_service.dart';
 import 'package:csbiblio/services/editora_service.dart';
 import 'package:csbiblio/services/genero_service.dart';
+import 'package:csbiblio/services/livro_service.dart';
 import 'package:flutter/material.dart';
 
 class LivroCadastrarView extends StatefulWidget {
@@ -16,10 +18,18 @@ class LivroCadastrarView extends StatefulWidget {
 }
 
 class _LivroCadastrarViewState extends State<LivroCadastrarView> {
-  final nome = TextEditingController();
+  final titulo = TextEditingController();
+  final nomeSaga = TextEditingController();
+  final edicao = TextEditingController();
+  final anoPublicacao = TextEditingController();
+  final codigo = TextEditingController();
+  final quantidade = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final List<Genero> generos = [];
+  Autor autor = Autor();
+  Editora editora = Editora();
   String autorId = "";
+  String editoraId = "";
 
   @override
   Widget build(BuildContext context) {
@@ -57,42 +67,42 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
         child: ListView(
           children: [
             FormFieldPadrao(
-              controle: nome,
-              title: "Nome",
+              controle: titulo,
+              title: "Título",
             ),
             SizedBox(
               height: 15,
             ),
             FormFieldPadrao(
-              controle: nome,
+              controle: nomeSaga,
               title: "Nome da saga",
             ),
             SizedBox(
               height: 15,
             ),
             FormFieldPadrao(
-              controle: nome,
+              controle: edicao,
               title: "Edição",
             ),
             SizedBox(
               height: 15,
             ),
             FormFieldPadrao(
-              controle: nome,
+              controle: anoPublicacao,
               title: "Ano de publicação",
             ),
             SizedBox(
               height: 15,
             ),
             FormFieldPadrao(
-              controle: nome,
+              controle: codigo,
               title: "Código",
             ),
             SizedBox(
               height: 15,
             ),
             FormFieldPadrao(
-              controle: nome,
+              controle: quantidade,
               title: "Quantidade",
             ),
             SizedBox(
@@ -112,12 +122,12 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
               height: 15,
             ),
             DropdownPadrao<Editora>(
-              nome: "Autor",
+              nome: "editora",
               future: EditoraService().getAll(),
               onSelect: (value) {
-                autorId = value;
+                editoraId = value;
               },
-              initialValue: autorId,
+              initialValue: editoraId,
               child: 'nome',
               value: 'id',
             ),
@@ -127,7 +137,32 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
             Container(
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Livro livro = Livro();
+                  livro.setTitulo(titulo.text);
+                  livro.setNomeSaga(nomeSaga.text);
+                  livro.setEdicao(edicao.text);
+                  livro.setAnoPublicacao(int.parse(anoPublicacao.text));
+                  livro.setCodigo(codigo.text);
+                  livro.setQuantidade(int.parse(quantidade.text));
+                  AutorService().getById(autorId).then((value) => {
+                        setState(() {
+                          autor = value!;
+                        })
+                      });
+                  EditoraService().getById(editoraId).then((value) => {
+                        setState(() {
+                          editora = value!;
+                        })
+                      });
+                  print(autor.nome);
+                  livro.setAutor(autor);
+                  livro.setEditora(editora);
+                  livro.setGenero(generos);
+                  LivroService().cadastrarLivro(livro);
+
+                  salvarLivro();
+                },
                 child: Text(
                   "Salvar",
                   style: TextStyle(fontSize: 18),
@@ -162,6 +197,8 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
       ),
     );
   }
+
+  salvarLivro() {}
 
   addGenero() {
     String generoId = "";
