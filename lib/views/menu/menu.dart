@@ -35,7 +35,7 @@ class _MenuViewState extends State<MenuView> {
                 child: Card(
                   child: ListTile(
                     title: Text(lista[livro].titulo ?? ""),
-                    subtitle: Text(lista[livro].autor!.nome ?? ""),
+                    subtitle: Text(lista[livro].autor?.nome ?? ""),
                     trailing: Text(lista[livro].quantidade.toString()),
                     onTap: () {
                       //Get.to(() => EditoraEditarView(editora: lista[editora]));
