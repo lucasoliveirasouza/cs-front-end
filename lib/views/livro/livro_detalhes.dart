@@ -1,3 +1,4 @@
+import 'package:csbiblio/componentes/row_table.dart';
 import 'package:csbiblio/models/Livro.dart';
 import 'package:csbiblio/services/livro_service.dart';
 import 'package:csbiblio/views/livro/livro_editar.dart';
@@ -14,8 +15,12 @@ class LivroDetalhesView extends StatefulWidget {
 }
 
 class _LivroDetalhesViewState extends State<LivroDetalhesView> {
+  String generos = "";
   @override
   Widget build(BuildContext context) {
+    widget.livro.genero!.forEach((element) {
+      generos += element.nome! + "\n";
+    });
     return Scaffold(
       appBar: AppBar(
         title: Text("Detalhes"),
@@ -74,7 +79,107 @@ class _LivroDetalhesViewState extends State<LivroDetalhesView> {
                   ])
         ],
       ),
-      body: Container(),
+      body: Container(
+        padding: EdgeInsets.only(
+          left: 25,
+          right: 25,
+          top: 20,
+        ),
+        child: ListView(
+          children: [
+            Center(
+              child: Text(
+                widget.livro.titulo!,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            RowTable(
+              title: "Saga:",
+              valor: widget.livro.nomeSaga!,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            RowTable(
+              title: "Edição:",
+              valor: widget.livro.edicao!,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            RowTable(
+              title: "Ano:",
+              valor: widget.livro.anoPublicacao!.toString(),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            RowTable(
+              title: "Código:",
+              valor: widget.livro.codigo!,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            RowTable(
+              title: "Quantidade:",
+              valor: widget.livro.quantidade!.toString(),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            RowTable(
+              title: "Autor:",
+              valor: widget.livro.autor!.nome!,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            RowTable(
+              title: "Editora:",
+              valor: widget.livro.editora!.nome!,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Table(
+              children: [
+                TableRow(children: [
+                  Container(
+                    padding: EdgeInsets.only(right: 5, top: 5, bottom: 5),
+                    child: Text(
+                      "Gêneros",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 15,
+                      ),
+                    ),
+                    color: Colors.green.shade100,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 5, top: 5, bottom: 5),
+                    child: Text(
+                      generos,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.green,
+                      ),
+                    ),
+                  )
+                ]),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 
