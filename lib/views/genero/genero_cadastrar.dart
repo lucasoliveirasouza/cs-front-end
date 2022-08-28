@@ -43,7 +43,7 @@ class _GeneroCadastrarViewState extends State<GeneroCadastrarView> {
                       Provider.of<GeneroService>(context, listen: false)
                           .cadastrarGenero(nome.text)
                           .then((value) {
-                        if (value == "Cadatrado com sucesso") {
+                        if (value == "Cadastrado com sucesso") {
                           Get.snackbar("Cadastro de gênero", value.toString(),
                               backgroundColor: Colors.green.shade100);
                           Navigator.of(context).pop();
