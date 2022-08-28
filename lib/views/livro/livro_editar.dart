@@ -33,6 +33,7 @@ class _LivroEditarViewState extends State<LivroEditarView> {
   Editora editora = Editora();
   String autorId = "";
   String editoraId = "";
+  String livroId = "";
   @override
   Widget build(BuildContext context) {
     titulo.text = widget.livro.titulo!;
@@ -44,6 +45,7 @@ class _LivroEditarViewState extends State<LivroEditarView> {
     List<Genero>? generos = widget.livro.genero;
     autorId = widget.livro.autor!.id!;
     editoraId = widget.livro.editora!.id!;
+    livroId = widget.livro.id.toString();
 
     return DefaultTabController(
       length: 2,
@@ -150,7 +152,7 @@ class _LivroEditarViewState extends State<LivroEditarView> {
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  salvarLivro();
+                  editarLivro();
                 },
                 child: Text(
                   "Salvar",
@@ -188,7 +190,7 @@ class _LivroEditarViewState extends State<LivroEditarView> {
     );
   }
 
-  salvarLivro() {
+  editarLivro() {
     Livro livro = Livro();
     livro.setTitulo(titulo.text);
     livro.setNomeSaga(nomeSaga.text);
@@ -196,6 +198,7 @@ class _LivroEditarViewState extends State<LivroEditarView> {
     livro.setAnoPublicacao(int.parse(anoPublicacao.text));
     livro.setCodigo(codigo.text);
     livro.setQuantidade(int.parse(quantidade.text));
+    livro.setId(int.parse(livroId));
     AutorService().getById(autorId).then((value) {
       setState(() {
         autor = value!;
@@ -210,14 +213,14 @@ class _LivroEditarViewState extends State<LivroEditarView> {
         livro.setGenero(generos);
 
         Provider.of<LivroService>(context, listen: false)
-            .cadastrarLivro(livro)
+            .editarLivro(livro)
             .then((value) {
-          if (value == "Cadastrado com sucesso") {
-            Get.snackbar("Cadastro de editora", value.toString(),
+          if (value == "Editado com sucesso") {
+            Get.snackbar("Edição de livro", value.toString(),
                 backgroundColor: Colors.green.shade100);
             Navigator.of(context).pop();
           } else {
-            Get.snackbar("Erro ao cadastrar editora", value.toString(),
+            Get.snackbar("Erro ao editar livro", value.toString(),
                 backgroundColor: Colors.red.shade100);
           }
         });

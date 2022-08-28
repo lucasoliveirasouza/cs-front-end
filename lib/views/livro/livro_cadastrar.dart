@@ -202,11 +202,11 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
             .cadastrarLivro(livro)
             .then((value) {
           if (value == "Cadastrado com sucesso") {
-            Get.snackbar("Cadastro de editora", value.toString(),
+            Get.snackbar("Cadastro de livro", value.toString(),
                 backgroundColor: Colors.green.shade100);
             Navigator.of(context).pop();
           } else {
-            Get.snackbar("Erro ao cadastrar editora", value.toString(),
+            Get.snackbar("Erro ao cadastrar livro", value.toString(),
                 backgroundColor: Colors.red.shade100);
           }
         });
@@ -249,9 +249,6 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
                       })
                     });
                 Navigator.of(context).pop(false);
-
-                /* AuthService().logout();
-                Get.to(() => LoginView());*/
               },
               child: Text(
                 "Adicionar",

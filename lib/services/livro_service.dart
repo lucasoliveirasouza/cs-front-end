@@ -57,6 +57,26 @@ class LivroService extends ChangeNotifier {
     }
   }
 
+  Future<String> editarLivro(Livro livro) async {
+    print(livro.editora?.nome ?? "");
+    String? value = await storage.read(key: "tokenKey");
+    final http.Response response = await http.put(
+      Uri.parse('${servidor}api/livro'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer ${value}"
+      },
+      body: json.encode(livro.toJson()),
+    );
+
+    if (response.statusCode == 200) {
+      _buscarLivros();
+      return "Editado com sucesso";
+    } else {
+      return "Não foi possível realizar o cadastro";
+    }
+  }
+
   Future<String> deletarLivro(String id) async {
     print(id);
     String? value = await storage.read(key: "tokenKey");
