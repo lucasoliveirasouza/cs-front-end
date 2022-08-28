@@ -41,7 +41,7 @@ class _LivroEditarViewState extends State<LivroEditarView> {
     anoPublicacao.text = widget.livro.anoPublicacao!.toString();
     codigo.text = widget.livro.codigo!;
     quantidade.text = widget.livro.quantidade!.toString();
-    List<Genero> generos = widget.livro.genero!;
+    List<Genero>? generos = widget.livro.genero;
     autorId = widget.livro.autor!.id!;
     editoraId = widget.livro.editora!.id!;
     return DefaultTabController(
