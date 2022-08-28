@@ -1,6 +1,8 @@
-class Genero {
+import 'IModel.dart';
+
+class Genero extends IModel {
   Genero({
-    int? id,
+    String? id,
     String? nome,
   }) {
     _id = id;
@@ -12,11 +14,11 @@ class Genero {
     _nome = json['nome'];
   }
 
-  int? _id;
+  String? _id;
   String? _nome;
 
   Genero copyWith({
-    int? id,
+    String? id,
     String? nome,
   }) =>
       Genero(
@@ -24,13 +26,13 @@ class Genero {
         nome: nome ?? _nome,
       );
 
-  int? get id => _id;
+  String? get id => _id;
 
   void setNome(String valor) {
     _nome = valor;
   }
 
-  void setId(int valor) {
+  void setId(String valor) {
     _id = valor;
   }
 
