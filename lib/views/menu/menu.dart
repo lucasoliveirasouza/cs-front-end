@@ -7,6 +7,7 @@ import 'package:csbiblio/views/autor/autor_lista.dart';
 import 'package:csbiblio/views/editora/editora_lista.dart';
 import 'package:csbiblio/views/genero/genero_lista.dart';
 import 'package:csbiblio/views/livro/livro_cadastrar.dart';
+import 'package:csbiblio/views/livro/livro_editar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,7 @@ class _MenuViewState extends State<MenuView> {
                     subtitle: Text(lista[livro].autor?.nome ?? ""),
                     trailing: Text(lista[livro].quantidade.toString()),
                     onTap: () {
-                      //Get.to(() => EditoraEditarView(editora: lista[editora]));
+                      Get.to(() => LivroEditarView(livro: lista[livro]));
                     },
                   ),
                 ),
