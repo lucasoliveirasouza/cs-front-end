@@ -93,7 +93,7 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
               ),
               FormFieldPadrao(
                 controle: nome,
-                title: "Quntidade",
+                title: "Quantidade",
               ),
             ],
           ),
