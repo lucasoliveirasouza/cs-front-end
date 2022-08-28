@@ -18,7 +18,7 @@ class LivroCadastrarView extends StatefulWidget {
 class _LivroCadastrarViewState extends State<LivroCadastrarView> {
   final nome = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  late final List<Genero> generos;
+  final List<Genero> generos = [];
   String autorId = "";
 
   @override
@@ -142,6 +142,17 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
 
   Widget Generos() {
     return Scaffold(
+      body: Container(
+        child: ListView.builder(
+            itemCount: generos.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                child: ListTile(
+                  title: Text(generos[index].nome ?? "test"),
+                ),
+              );
+            }),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           addGenero();
@@ -180,12 +191,18 @@ class _LivroCadastrarViewState extends State<LivroCadastrarView> {
             ),
             TextButton(
               onPressed: () {
+                GeneroService().getById(generoId).then((value) => {
+                      setState(() {
+                        generos.add(value!);
+                      })
+                    });
                 Navigator.of(context).pop(false);
+
                 /* AuthService().logout();
                 Get.to(() => LoginView());*/
               },
               child: Text(
-                "Sair",
+                "Adicionar",
               ),
             ),
           ],
