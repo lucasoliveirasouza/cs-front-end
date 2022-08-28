@@ -19,7 +19,7 @@ class Livro {
     _nomeSaga = nomeSaga;
     _titulo = titulo;
     _edicao = edicao;
-    _anoPublicacao = _anoPublicacao;
+    _anoPublicacao = anoPublicacao;
     _codigo = codigo;
     _quantidade = quantidade;
     _autor = autor;
