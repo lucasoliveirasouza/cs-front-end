@@ -59,6 +59,25 @@ class EditoraService extends ChangeNotifier {
     return edi;
   }
 
+  Future<Editora?> getById(String id) async {
+    Editora? editora;
+    String? value = await storage.read(key: "tokenKey");
+    String uri = '${servidor}api/editora/${id}';
+    final response = await http.get(Uri.parse(uri), headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer ${value}"
+    });
+
+    if (response.statusCode == 200) {
+      final json = jsonDecode(response.body);
+
+      Editora ed = Editora.fromJson(json);
+      //print(gr.nome);
+      return ed;
+    }
+    return editora;
+  }
+
   Future<String> cadastrarEditora(String nome) async {
     String? value = await storage.read(key: "tokenKey");
     final http.Response response = await http.post(
