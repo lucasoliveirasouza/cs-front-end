@@ -1,4 +1,6 @@
+import 'package:csbiblio/models/Livro.dart';
 import 'package:csbiblio/services/auth_service.dart';
+import 'package:csbiblio/services/livro_service.dart';
 import 'package:csbiblio/views/auth/lista_usuarios.dart';
 import 'package:csbiblio/views/auth/login.dart';
 import 'package:csbiblio/views/autor/autor_lista.dart';
@@ -7,6 +9,7 @@ import 'package:csbiblio/views/genero/genero_lista.dart';
 import 'package:csbiblio/views/livro/livro_cadastrar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class MenuView extends StatefulWidget {
   const MenuView({Key? key}) : super(key: key);
@@ -20,8 +23,71 @@ class _MenuViewState extends State<MenuView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Livros")),
-      body: Center(
-        child: Text('Nenhum livro disponível'),
+      body: Consumer<LivroService>(
+        builder: (context, repositorio, child) {
+          return ListView.separated(
+            itemCount: repositorio.livros.length,
+            itemBuilder: (BuildContext contexto, int livro) {
+              final List<Livro> lista = repositorio.livros;
+              final item = lista[livro].titulo;
+              return Dismissible(
+                key: Key(item ?? "teste"),
+                child: Card(
+                  child: ListTile(
+                    title: Text(lista[livro].titulo ?? ""),
+                    subtitle: Text(lista[livro].autor!.nome ?? ""),
+                    trailing: Text(lista[livro].quantidade.toString()),
+                    onTap: () {
+                      //Get.to(() => EditoraEditarView(editora: lista[editora]));
+                    },
+                  ),
+                ),
+                onDismissed: (direction) {
+                  /*Provider.of<LivroService>(context, listen: false)
+                      .deletarEditora(lista[editora].id.toString())
+                      .then((value) => {
+                            Get.snackbar("Excluir editora", value.toString(),
+                                backgroundColor: Colors.green.shade50)
+                          });*/
+                },
+                confirmDismiss: (DismissDirection direction) async {
+                  return await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Deletar"),
+                        content: Text("Deseja realmente deletar esse editora?"),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: Text(
+                              "Cancelar",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: Text(
+                                "Deletar",
+                              )),
+                        ],
+                      );
+                    },
+                  );
+                },
+                background: Container(
+                  color: Colors.red,
+                  child: Align(
+                    alignment: Alignment(-0.9, 0),
+                    child: Icon(Icons.delete, color: Colors.white),
+                  ),
+                ),
+              );
+            },
+            separatorBuilder: (_, __) => Container(),
+            padding: EdgeInsets.all(16),
+          );
+        },
       ),
       drawer: Drawer(
         child: ListView(

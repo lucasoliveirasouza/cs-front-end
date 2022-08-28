@@ -19,7 +19,7 @@ class LivroService extends ChangeNotifier {
 
   _buscarLivros() async {
     String? value = await storage.read(key: "tokenKey");
-    String uri = '${servidor}api/livro';
+    String uri = '${servidor}api/livro/lista';
     final response = await http.get(Uri.parse(uri), headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer ${value}"
@@ -28,7 +28,6 @@ class LivroService extends ChangeNotifier {
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
       List<dynamic> listaGeneros = json;
-
       listaGeneros.forEach((genero) {
         Livro lv = Livro.fromJson(genero);
         _livros.add(lv);
