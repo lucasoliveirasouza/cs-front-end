@@ -14,3 +14,4 @@ Aplicativo criado para consumir a API desenvolvida na disciplina de Engenharia d
 * Realizar cadastro, edição, exclusão e listagem de editoras;
 * Realizar cadastro, edição, exclusão e listagem de gênero;
 * Realizar cadastro, edição, exclusão e listagem de livros;
+
